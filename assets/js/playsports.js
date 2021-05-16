@@ -2,7 +2,9 @@
 var url
 var API_KEY = "AIzaSyBxhAfAE7aGeXfCWNVgp7i3tcs9NeLRIqc"
 var channelId = ""
+
 $("#populate").on("click", function() {
+    $(this).prop( "disabled", true);
     // clear table videos
     $.ajax({
         async: false,
@@ -101,8 +103,10 @@ $("#populate").on("click", function() {
             } else if (response == "0") {
                 console.log("No filter was found")
             }
+            
         }
     })
+    $(this).prop( "disabled", false);
 })
 
 $("#get-info").on("click", function() {
@@ -154,6 +158,27 @@ $("#delete-id").on("click", function() {
                 console.log(result.data)
                 document.getElementById('results').innerHTML = ""
                 document.getElementById('results').innerHTML += JSON.stringify(result.data)
+            } 
+        }
+    })
+
+})
+
+$("#search-title").on("click", function() {
+
+    $.ajax({
+        method: "POST",
+        url: './assets/php/get_title.php',
+        data: {
+            title: $('#search-title-txt').val()
+        },
+        success: function (result) {
+            if(result){
+                console.log(result.data)
+                document.getElementById('results').innerHTML = ""
+                for(var i = 0; i < result.data.length; i++) {
+                document.getElementById('results').innerHTML += JSON.stringify(result.data[i]) + "<br>"
+                }
             } 
         }
     })
