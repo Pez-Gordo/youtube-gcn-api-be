@@ -113,9 +113,49 @@ $("#get-info").on("click", function() {
         success: function (result) {
             console.log(result.data)
             document.getElementById('results').innerHTML = ""
-            document.getElementById('results').innerHTML = JSON.stringify(result.data)
+            for(var i = 0; i < result.data.length; i++) {
+                document.getElementById('results').innerHTML += JSON.stringify(result.data[i]) + "<br>"
+            }
+        }
+    })
+})
+
+// Search by Id
+$("#search-id").on("click", function() {
+
+    $.ajax({
+        method: "POST",
+        url: './assets/php/get_id.php',
+        data: {
+            id: $('#search-id-txt').val()
+        },
+        success: function (result) {
+            if(result){
+                console.log(result.data)
+                document.getElementById('results').innerHTML = ""
+                document.getElementById('results').innerHTML += JSON.stringify(result.data)
+            } 
         }
     })
 
+})
+
+// Delete by Id
+$("#delete-id").on("click", function() {
+
+    $.ajax({
+        method: "POST",
+        url: './assets/php/delete_id.php',
+        data: {
+            id: $('#delete-id-txt').val()
+        },
+        success: function (result) {
+            if(result){
+                console.log(result.data)
+                document.getElementById('results').innerHTML = ""
+                document.getElementById('results').innerHTML += JSON.stringify(result.data)
+            } 
+        }
+    })
 
 })
