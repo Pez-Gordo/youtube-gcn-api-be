@@ -1,5 +1,5 @@
 <?php
     // connection to database
-    $conn = new mysqli('localhost', 'root', 'my*8-9+6POiusql', 'mydb');
+    $conn = new mysqli('localhost', 'your_user', 'your_password', 'mydb');
 ?>
 
