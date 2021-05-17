@@ -1,8 +1,8 @@
-//var filter = ""
 var url
 var API_KEY = "AIzaSyBxhAfAE7aGeXfCWNVgp7i3tcs9NeLRIqc"
 var channelId = ""
 
+// Populate database
 $("#populate").on("click", function() {
     $(this).prop( "disabled", true);
     // clear table videos
@@ -27,7 +27,6 @@ $("#populate").on("click", function() {
 
                 for(var i = 0; i < response.length; i++) {
                     response[i] = response[i].replace(/(\r\n|\n|\r)/gm, "");
-                    //filter += response[i] + " "
                 }
 
                 channelId = "UCuTaETsuCOkJ0H_GAztWt0Q"
@@ -45,7 +44,6 @@ $("#populate").on("click", function() {
                                     async: false,
                                     method: "POST",
                                     url: './assets/php/insert_video.php',
-                                    //dataType: 'json',
                                     data: {
                                         title: data.items[i].snippet.title,
                                         publishedAt: data.items[i].snippet.publishedAt
@@ -57,13 +55,9 @@ $("#populate").on("click", function() {
                                         console.log(textStatus, errorThrown);
                                     }
                                 })
-                                //console.log("inserted")
                             }
-                            //console.log("database populated")
-                            //console.log(data.items);
                         },
                     })
-                    //console.log(filter)
                 }
 
                 channelId = "UC_A--fhX5gea0i4UtpD99Gg"
@@ -80,7 +74,6 @@ $("#populate").on("click", function() {
                                     async: false,
                                     method: "POST",
                                     url: './assets/php/insert_video.php',
-                                    //dataType: 'json',
                                     data: {
                                         title: data.items[i].snippet.title,
                                         publishedAt: data.items[i].snippet.publishedAt
@@ -92,13 +85,9 @@ $("#populate").on("click", function() {
                                         console.log(textStatus, errorThrown);
                                     }
                                 })
-                                //console.log("inserted")
                             }
-                            //console.log("database populated")
-                            //console.log(data.items);
                         },
                     })
-                    //console.log(filter)
                 }
             } else if (response == "0") {
                 console.log("No filter was found")
@@ -109,6 +98,7 @@ $("#populate").on("click", function() {
     $(this).prop( "disabled", false);
 })
 
+// Get info
 $("#get-info").on("click", function() {
 
     $.ajax({
@@ -164,6 +154,7 @@ $("#delete-id").on("click", function() {
 
 })
 
+// Search by title
 $("#search-title").on("click", function() {
 
     $.ajax({

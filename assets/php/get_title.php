@@ -29,7 +29,7 @@ if (mysqli_connect_errno()) {
 
 $title = $_POST['title'];
 
-$query = "SELECT * FROM videos WHERE title LIKE '%$title%'";
+$query = "SELECT videos.title, videos.date FROM videos WHERE title LIKE '%$title%'";
 
 $result = $conn->query($query);
 
